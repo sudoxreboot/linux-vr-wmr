@@ -26,9 +26,10 @@ sudo ln -s /usr/lib/libboost_atomic.so.1.89.0 /usr/lib/libboost_system.so
 
 
 <h2><span style="font-size: 32px;"><strong>envision</strong></span></h2>
-<span style="font-size: 12px;">- launch envision
 
--choose WMR default from dropdown
+- launch envision
+
+- choose WMR default from dropdown
 
 <details>
   <summary>image</summary>
