@@ -32,18 +32,19 @@ sudo ln -s /usr/lib/libboost_atomic.so.1.89.0 /usr/lib/libboost_system.so
   
 - launch envision
 
-- choose WMR default from dropdown
 
 <details>
-  <summary>image</summary>
+  <summary>choose WMR default from dropdown and duplicate</summary>
 <p align="center">
   <img src="https://lvra.gitlab.io/images/EnvisionXR_WMR.png" />
-</p></details>      
+</p></details> 
+<p align="center">
+<details>
+  <summary>change config</summary>
   
-- duplicate and change:
-
 <span style="font-size: 22px;"><strong>xr service repo:</strong></span>
-```
+
+  ```
 https://gitlab.freedesktop.org/thaytan/monado
 ```
 <span style="font-size: 22px;"><strong>xr service branch:</strong></span>
@@ -54,19 +55,24 @@ dev-constellation-controller-tracking
 <details>
   <summary>image</summary>
 
-
 <p align="center">
   <img src="https://lvra.gitlab.io/images/wmr_controller_tracking_envision.png" />
 </p></details>  
 <span style="font-size: 22px;"><strong>environment variables:</strong></span>
 
-(enables krfb cursors)
-```
-WLR_NO_HARDWARE_CURSORS=1
-```
+enable krfb cursors
+```WLR_NO_HARDWARE_CURSORS=1```
+enable handtracking
+```WMR_HANDTRACKING=1```
+
+</details>   
+  </p>
+  
 - save and build
 - enable wayvr and wayvr dashboard plugin
-- turn on controllers, plug in headset if not plugged in 
+- pair controllers (will probably say failed, ignore it)
+  - if failed to connect: power cycle the controllers and they should connect
+- plug in headset if not plugged in 
 - press start
 
 - [ this final step is a <strong>hard</strong> requirement or else don't follow this guide =p ]
@@ -76,6 +82,11 @@ WLR_NO_HARDWARE_CURSORS=1
 <p align="center"><span style="color: #FF0099; font-size: 96px;"><strong>enjoy!</strong></span></p>
 </details>  
   
+<strong><span style="font-size: 28px;">notes</span></strong>
+
+- <strong>NEVER</strong> close envision while the game is running
+- turn on controllers before starting the envision instance
+</span>
 
 <h2><span style="font-size: 32px;">multi-monitor</span></h2>
 
@@ -89,30 +100,48 @@ krfb-virtualmonitor --resolution 1920x1080 --name monitor_name --password passwo
   - save
 
 
+
 <h2><span style="font-size: 32px;">custom environment</span></h2>
 
 - you may set a custom environment at ```~/.config/wayvr/conf.d:```
   
 <strong>parameters:</strong>
   - .dds file supported only
-  - Image must be an equirectangular (aka "HDRI" or "Spherical 360") image.  
+  - image must be an equirectangular (aka "HDRI" or "Spherical 360") image.  
 
 <strong>steps:</strong>  
 - convert image
+  (replace input and output with path to file and output file name)
 ```
 magick convert input.png -define dds:compression=dxt5 output.dds
 ```
   
 - set image  
 ```  
-echo 'skybox_texture: my-skybox.dds' > ~/.config/wayvr/conf.d/skybox.yaml
+echo 'skybox_texture: output.dds' > ~/.config/wayvr/conf.d/skybox.yaml
 ```
   
 
 
 
-<h2><span style="font-size: 32px;">notes</span></h2>
 
-- <strong>NEVER</strong> close envision while the game is running
-- turn on controllers before starting the envision instance
-</span>
+
+
+<h2><span style="font-size: 32px;">custom plugins</span></h2>
+
+<strong>wayvr updated (more stable)</strong>
+```
+paru -Syu wayvr-git --noconfirm && mkdir -p ~/.local/bin && printf "#!/usr/bin/env bash\n/usr/bin/wayvr --openxr\n" > ~/.local/bin/wayvr-updated && chmod +x ~/.local/bin/wayvr-updated
+```
+
+
+<strong>apply</strong>
+- in envision open plugins
+- press +
+- name plugin
+- choose ~/.local/bin/wayvr-updated
+- press add
+- disable conflicting plugins
+
+
+
