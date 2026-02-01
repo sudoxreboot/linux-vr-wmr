@@ -25,6 +25,11 @@ sudo ln -sf /usr/lib/libboost_filesystem.so.1.89.0 /usr/lib/libboost_filesystem.
 sudo ln -sf /usr/lib/libboost_program_options.so.1.89.0 /usr/lib/libboost_program_options.so.1.88.0
 sudo ln -sf /usr/lib/libboost_atomic.so.1.89.0 /usr/lib/libboost_system.so.1.88.0
 sudo ln -sf /usr/lib/libboost_atomic.so.1.89.0 /usr/lib/libboost_system.so
+mkdir -p ~/Pictures/wayvr_environments/ && \
+wget -O ~/Pictures/wayvr_environments/nebula.jpg 'https://raw.githubusercontent.com/sudoxreboot/linux-vr-wmr/main/wayvr_environments/nebula.jpg'
+magick "$HOME/Pictures/wayvr_environments/nebula.jpg" -define dds:compression=dxt5 "$HOME/Pictures/wayvr_environments/nebula.dds"
+echo "skybox_texture: $HOME/Pictures/wayvr_environments/nebula.dds" > ~/.config/wayvr/conf.d/skybox.yaml
+
 ```
 
 <span style="font-size: 12px;">(boost 1.89 doesn't work with envision, so we trick it)</span>
@@ -118,15 +123,7 @@ IN="input.png" \
 OUT="output.dds" \
 sh -c 'magick "$IN" -define dds:compression=dxt5 "$OUT" && mkdir -p ~/.config/wayvr/conf.d/ && echo "skybox_texture: $OUT" > ~/.config/wayvr/conf.d/skybox.yaml'
 ```
-<h2><span style="font-size: 32px;">update wayvr</span></h2>
 
-```
-paru -Syu wayvr-git --noconfirm 
-```
-- remove
-```
-paru -R wayvr-git --noconfirm 
-```
 
 
 
