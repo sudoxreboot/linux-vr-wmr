@@ -13,16 +13,22 @@ with multi-monitor support
 <h2>install</h2>
   
 <span style="font-size: 12px;">- open konsole</span>
+
 <span style="font-size: 12px;">- run:</span>
+
+<!--```
+sudo pacman --noconfirm -Sy cachyos-gaming-meta wayland-protocols boost git-lfs onnxruntime krfb
+paru -Sy --noconfirm monado-vulkan-layers-git envision-xr-git
+sudo ln -sf /usr/lib/libboost_thread.so.1.89.0 /usr/lib/libboost_thread.so.1.88.0
+sudo ln -sf /usr/lib/libboost_filesystem.so.1.89.0 /usr/lib/libboost_filesystem.so.1.88.0
+sudo ln -sf /usr/lib/libboost_program_options.so.1.89.0 /usr/lib/libboost_program_options.so.1.88.0
+sudo ln -sf /usr/lib/libboost_atomic.so.1.89.0 /usr/lib/libboost_system.so.1.88.0
+sudo ln -sf /usr/lib/libboost_atomic.so.1.89.0 /usr/lib/libboost_system.so
+```-->
 ```
 sudo pacman --noconfirm -Sy cachyos-gaming-meta wayland-protocols boost git-lfs onnxruntime krfb
 paru -Sy --noconfirm monado-vulkan-layers-git envision-xr-git
-
-sudo ln -s /usr/lib/libboost_thread.so.1.89.0 /usr/lib/libboost_thread.so.1.88.0
-sudo ln -s /usr/lib/libboost_filesystem.so.1.89.0 /usr/lib/libboost_filesystem.so.1.88.0
-sudo ln -s /usr/lib/libboost_program_options.so.1.89.0 /usr/lib/libboost_program_options.so.1.88.0
-sudo ln -s /usr/lib/libboost_atomic.so.1.89.0 /usr/lib/libboost_system.so.1.88.0
-sudo ln -s /usr/lib/libboost_atomic.so.1.89.0 /usr/lib/libboost_system.so
+for lib in thread filesystem program_options; do sudo ln -sf /usr/lib/libboost_$lib.so.1.89.0 /usr/lib/libboost_$lib.so.1.88.0; done && sudo ln -sf /usr/lib/libboost_atomic.so.1.89.0 /usr/lib/libboost_system.so.1.88.0 && sudo ln -sf /usr/lib/libboost_atomic.so.1.89.0 /usr/lib/libboost_system.so
 ```
 <span style="font-size: 12px;">(boost 1.89 doesn't work with envision, so we trick it)</span>
 
@@ -111,14 +117,11 @@ krfb-virtualmonitor --resolution 1920x1080 --name monitor_name --password passwo
 
 <strong>steps:</strong>  
 - convert image
-  (replace input and output with path to file and output file name)
+  (replace in and out with path to file and output file name)
 ```
-magick convert input.png -define dds:compression=dxt5 output.dds
-```
-  
-- set image  
-```  
-echo 'skybox_texture: output.dds' > ~/.config/wayvr/conf.d/skybox.yaml
+IN="input.png" \
+OUT="output.dds" \
+sh -c 'magick convert "$IN" -define dds:compression=dxt5 "$OUT" && mkdir -p ~/.config/wayvr/conf.d/ && echo "skybox_texture: $OUT" > ~/.config/wayvr/conf.d/skybox.yaml'
 ```
   
 
@@ -129,11 +132,15 @@ echo 'skybox_texture: output.dds' > ~/.config/wayvr/conf.d/skybox.yaml
 
 <h2><span style="font-size: 32px;">custom plugins</span></h2>
 
-<strong>wayvr updated (more stable)</strong>
+<strong>wayvr updated (more stable)</strong> ```~/.local/bin/wayvr-updated```
 ```
 paru -Syu wayvr-git --noconfirm && mkdir -p ~/.local/bin && printf "#!/usr/bin/env bash\n/usr/bin/wayvr --openxr\n" > ~/.local/bin/wayvr-updated && chmod +x ~/.local/bin/wayvr-updated
 ```
 
+<strong>alvr</strong> ```~/.local/bin/alvr```
+```
+paru -Syu cuda ffnvcodec-headers alvr-git --noconfirm && mkdir -p ~/.local/bin && printf "#!/usr/bin/env bash\n/usr/bin/wayvr --openxr\n" > ~/.local/bin/alvr && chmod +x ~/.local/bin/alvr
+```
 
 <strong>apply</strong>
 - in envision open plugins
