@@ -29,18 +29,22 @@ choose WMR default from dropdown
 duplicate and change:
 
 xr service repo:
-
+```
 https://gitlab.freedesktop.org/thaytan/monado
-
+```
 xr service branch:
-
+```
 dev-constellation-controller-tracking
-
+```
 <p align="center">
   <img src="https://lvra.gitlab.io/images/wmr_controller_tracking_envision.png" />
 </p>
 environment variables:
-WLR_NO_HARDWARE_CURSORS=1 (enables krfb cursors)
+
+(enables krfb cursors for virtual display)
+```
+WLR_NO_HARDWARE_CURSORS=1 
+```
 
 save and build
 
