@@ -10,6 +10,7 @@
 <h2>install</h2>
   
 <span style="font-size: 12px;">- open konsole</span>
+
 <span style="font-size: 12px;">- run:</span>
 ```
 sudo pacman --noconfirm -Sy cachyos-gaming-meta wayland-protocols boost git-lfs onnxruntime
