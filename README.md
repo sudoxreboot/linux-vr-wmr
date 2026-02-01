@@ -1,10 +1,14 @@
+<p align="center">
+  <img src="https://cdn-icons-png.flaticon.com/512/8036/8036322.png" />
+</p>
+
 # how to set up vr on linux with wmr
 install cachyos
 ```
 sudo pacman -Sy cachyos-gaming-meta
 paru -Sy monado-vulkan-layers-git
 paru -Sy envision-xr-git
-sudo pacman -Syu boost boost boost boost boost boost bzip2 fmt glew clang libdrm libusb openxr sdl2 vulkan-icd-loader wayland
+sudo pacman -Syu boost boost boost boost boost boost bzip2 fmt glew clang libdrm libusb openxr sdl2 vulkan-icd-loader wayland intel-tbb
 sudo ln -s /usr/lib/libboost_thread.so.1.89.0 /usr/lib/libboost_thread.so.1.88.0
 sudo ln -s /usr/lib/libboost_filesystem.so.1.89.0 /usr/lib/libboost_filesystem.so.1.88.0
 sudo ln -s /usr/lib/libboost_program_options.so.1.89.0 /usr/lib/libboost_program_options.so.1.88.0
