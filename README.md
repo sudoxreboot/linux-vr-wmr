@@ -5,10 +5,9 @@
 # how to set up vr on linux with wmr
 install cachyos
 ```
-sudo pacman -Sy cachyos-gaming-meta
-paru -Sy monado-vulkan-layers-git
-paru -Sy envision-xr-git
-sudo pacman -Syu boost boost boost boost boost boost bzip2 fmt glew clang libdrm libusb openxr sdl2 vulkan-icd-loader wayland intel-tbb
+sudo pacman --noconfirm -Sy cachyos-gaming-meta wayland-protocols boost git-lfs onnxruntime
+paru -Sy --noconfirm monado-vulkan-layers-git envision-xr-git
+
 sudo ln -s /usr/lib/libboost_thread.so.1.89.0 /usr/lib/libboost_thread.so.1.88.0
 sudo ln -s /usr/lib/libboost_filesystem.so.1.89.0 /usr/lib/libboost_filesystem.so.1.88.0
 sudo ln -s /usr/lib/libboost_program_options.so.1.89.0 /usr/lib/libboost_program_options.so.1.88.0
@@ -17,6 +16,8 @@ sudo ln -s /usr/lib/libboost_atomic.so.1.89.0 /usr/lib/libboost_system.so
 ```
 (boost 1.89 doesn't work with envision, so we trick it)
 
+
+<h2>envision</h2>
 launch envision
 
 (source: https://lvra.gitlab.io/docs/fossvr/envision/wmr_controllers_on_arch/)
@@ -25,7 +26,7 @@ choose WMR default from dropdown
 <p align="center">
   <img src="https://lvra.gitlab.io/images/EnvisionXR_WMR.png" />
 </p>
-duplicate
+duplicate and change:
 
 xr service repo:
 
