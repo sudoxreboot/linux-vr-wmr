@@ -3,6 +3,9 @@
 </p>
 
 # <span style="font-size: 42px;"><strong>how to set up vr on linux with wmr</strong></span>
+with multi-monitor support
+
+
 <h2>prerequisite</h2>
 
 <span style="font-size: 12px;">- install cachyos</span>
@@ -10,10 +13,9 @@
 <h2>install</h2>
   
 <span style="font-size: 12px;">- open konsole</span>
-
 <span style="font-size: 12px;">- run:</span>
 ```
-sudo pacman --noconfirm -Sy cachyos-gaming-meta wayland-protocols boost git-lfs onnxruntime
+sudo pacman --noconfirm -Sy cachyos-gaming-meta wayland-protocols boost git-lfs onnxruntime krfb
 paru -Sy --noconfirm monado-vulkan-layers-git envision-xr-git
 
 sudo ln -s /usr/lib/libboost_thread.so.1.89.0 /usr/lib/libboost_thread.so.1.88.0
@@ -26,7 +28,8 @@ sudo ln -s /usr/lib/libboost_atomic.so.1.89.0 /usr/lib/libboost_system.so
 
 
 <h2><span style="font-size: 32px;"><strong>envision</strong></span></h2>
-
+<span style="font-size: 12px;">
+  
 - launch envision
 
 - choose WMR default from dropdown
@@ -74,11 +77,20 @@ WLR_NO_HARDWARE_CURSORS=1
 </details>  
   
 
+<h2><span style="font-size: 32px;">multi-monitor</span></h2>
+
+- to add an extra desktop for your wayvr desktop 
+  - for multiple, change port
+```
+krfb-virtualmonitor --resolution 1920x1080 --name monitor_name --password password --port 5900
+```
+- configure in display configuration
+  - set position
+  - save
 
 
 
-
-  <h2><span style="font-size: 32px;">notes</span></h2>
+<h2><span style="font-size: 32px;">notes</span></h2>
 
 - <strong>NEVER</strong> close envision while the game is running
 - turn on controllers before starting the envision instance
