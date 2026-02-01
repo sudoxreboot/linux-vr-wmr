@@ -89,6 +89,27 @@ krfb-virtualmonitor --resolution 1920x1080 --name monitor_name --password passwo
   - save
 
 
+<h2><span style="font-size: 32px;">custom environment</span></h2>
+
+- you may set a custom environment at ```~/.config/wayvr/conf.d:```
+  
+<strong>parameters:</strong>
+  - .dds file supported only
+  - Image must be an equirectangular (aka "HDRI" or "Spherical 360") image.  
+
+<strong>steps:</strong>  
+- convert image
+```
+magick convert input.png -define dds:compression=dxt5 output.dds
+```
+  
+- set image  
+```  
+echo 'skybox_texture: my-skybox.dds' > ~/.config/wayvr/conf.d/skybox.yaml
+```
+  
+
+
 
 <h2><span style="font-size: 32px;">notes</span></h2>
 
