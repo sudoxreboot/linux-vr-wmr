@@ -4,11 +4,12 @@
 
 # <span style="font-size: 42px;"><strong>how to set up vr on linux with wmr</strong></span>
 with multi-monitor support
-
-
 <h2>prerequisite</h2>
 
 <span style="font-size: 12px;">- install cachyos</span>
+- in cachy hello popup
+  - apps/tweaks
+    - install gaming packages
 
 <h2>install</h2>
   
@@ -16,20 +17,16 @@ with multi-monitor support
 
 <span style="font-size: 12px;">- run:</span>
 
-<!--```
-sudo pacman --noconfirm -Sy cachyos-gaming-meta wayland-protocols boost git-lfs onnxruntime krfb
-paru -Sy --noconfirm monado-vulkan-layers-git envision-xr-git
+```
+sudo pacman --noconfirm -Syu cachyos-gaming-meta wayland-protocols boost git-lfs onnxruntime krfb steam 
+paru -Syu --noconfirm monado-vulkan-layers-git envision-xr-git wayvr-git
 sudo ln -sf /usr/lib/libboost_thread.so.1.89.0 /usr/lib/libboost_thread.so.1.88.0
 sudo ln -sf /usr/lib/libboost_filesystem.so.1.89.0 /usr/lib/libboost_filesystem.so.1.88.0
 sudo ln -sf /usr/lib/libboost_program_options.so.1.89.0 /usr/lib/libboost_program_options.so.1.88.0
 sudo ln -sf /usr/lib/libboost_atomic.so.1.89.0 /usr/lib/libboost_system.so.1.88.0
 sudo ln -sf /usr/lib/libboost_atomic.so.1.89.0 /usr/lib/libboost_system.so
-```-->
 ```
-sudo pacman --noconfirm -Sy cachyos-gaming-meta wayland-protocols boost git-lfs onnxruntime krfb
-paru -Sy --noconfirm monado-vulkan-layers-git envision-xr-git
-for lib in thread filesystem program_options; do sudo ln -sf /usr/lib/libboost_$lib.so.1.89.0 /usr/lib/libboost_$lib.so.1.88.0; done && sudo ln -sf /usr/lib/libboost_atomic.so.1.89.0 /usr/lib/libboost_system.so.1.88.0 && sudo ln -sf /usr/lib/libboost_atomic.so.1.89.0 /usr/lib/libboost_system.so
-```
+
 <span style="font-size: 12px;">(boost 1.89 doesn't work with envision, so we trick it)</span>
 
 
@@ -75,7 +72,7 @@ enable handtracking
   </p>
   
 - save and build
-- enable wayvr and wayvr dashboard plugin
+- optional: enable stardust plugin
 - pair controllers (will probably say failed, ignore it)
   - if failed to connect: power cycle the controllers and they should connect
 - plug in headset if not plugged in 
@@ -105,15 +102,13 @@ krfb-virtualmonitor --resolution 1920x1080 --name monitor_name --password passwo
   - set position
   - save
 
-
-
 <h2><span style="font-size: 32px;">custom environment</span></h2>
 
 - you may set a custom environment at ```~/.config/wayvr/conf.d:```
   
 <strong>parameters:</strong>
   - .dds file supported only
-  - image must be an equirectangular (aka "HDRI" or "Spherical 360") image.  
+  - image must be an equirectangular (aka "hdri" or "spherical 360") image.  
 
 <strong>steps:</strong>  
 - convert image
@@ -121,34 +116,18 @@ krfb-virtualmonitor --resolution 1920x1080 --name monitor_name --password passwo
 ```
 IN="input.png" \
 OUT="output.dds" \
-sh -c 'magick convert "$IN" -define dds:compression=dxt5 "$OUT" && mkdir -p ~/.config/wayvr/conf.d/ && echo "skybox_texture: $OUT" > ~/.config/wayvr/conf.d/skybox.yaml'
+sh -c 'magick "$IN" -define dds:compression=dxt5 "$OUT" && mkdir -p ~/.config/wayvr/conf.d/ && echo "skybox_texture: $OUT" > ~/.config/wayvr/conf.d/skybox.yaml'
 ```
-  
+<h2><span style="font-size: 32px;">update wayvr</span></h2>
 
-
-
-
-
-
-<h2><span style="font-size: 32px;">custom plugins</span></h2>
-
-<strong>wayvr updated (more stable)</strong> ```~/.local/bin/wayvr-updated```
 ```
-paru -Syu wayvr-git --noconfirm && mkdir -p ~/.local/bin && printf "#!/usr/bin/env bash\n/usr/bin/wayvr --openxr\n" > ~/.local/bin/wayvr-updated && chmod +x ~/.local/bin/wayvr-updated
+paru -Syu wayvr-git --noconfirm 
+```
+- remove
+```
+paru -R wayvr-git --noconfirm 
 ```
 
-<strong>alvr</strong> ```~/.local/bin/alvr```
-```
-paru -Syu cuda ffnvcodec-headers alvr-git --noconfirm && mkdir -p ~/.local/bin && printf "#!/usr/bin/env bash\n/usr/bin/wayvr --openxr\n" > ~/.local/bin/alvr && chmod +x ~/.local/bin/alvr
-```
-
-<strong>apply</strong>
-- in envision open plugins
-- press +
-- name plugin
-- choose ~/.local/bin/wayvr-updated
-- press add
-- disable conflicting plugins
 
 
 
