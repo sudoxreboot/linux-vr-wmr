@@ -22,9 +22,9 @@ launch envision
 (source: https://lvra.gitlab.io/docs/fossvr/envision/wmr_controllers_on_arch/)
 
 choose WMR default from dropdown
-
-![wmr](https://lvra.gitlab.io/images/EnvisionXR_WMR.png)
-
+<p align="center">
+  <img src="https://lvra.gitlab.io/images/EnvisionXR_WMR.png" />
+</p>
 duplicate
 
 xr service repo:
@@ -35,8 +35,9 @@ xr service branch:
 
 dev-constellation-controller-tracking
 
-![variables](https://lvra.gitlab.io/images/wmr_controller_tracking_envision.png)
-
+<p align="center">
+  <img src="https://lvra.gitlab.io/images/wmr_controller_tracking_envision.png" />
+</p>
 environment variables:
 WLR_NO_HARDWARE_CURSORS=1 (enables krfb cursors)
 
