@@ -29,7 +29,6 @@ mkdir -p ~/Pictures/wayvr_environments/ && \
 wget -O ~/Pictures/wayvr_environments/nebula.jpg 'https://raw.githubusercontent.com/sudoxreboot/linux-vr-wmr/main/wayvr_environments/nebula.jpg'
 magick "$HOME/Pictures/wayvr_environments/nebula.jpg" -define dds:compression=dxt5 "$HOME/Pictures/wayvr_environments/nebula.dds"
 echo "skybox_texture: $HOME/Pictures/wayvr_environments/nebula.dds" > ~/.config/wayvr/conf.d/skybox.yaml
-
 ```
 
 <span style="font-size: 12px;">(boost 1.89 doesn't work with envision, so we trick it)</span>
