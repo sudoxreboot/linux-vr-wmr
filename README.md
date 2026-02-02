@@ -69,6 +69,7 @@ dev-constellation-controller-tracking
 
 enable krfb cursors
 ```WLR_NO_HARDWARE_CURSORS=1```
+
 enable handtracking
 ```WMR_HANDTRACKING=1```
 
