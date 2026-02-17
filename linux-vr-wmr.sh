@@ -34,6 +34,10 @@ paru -Syu --noconfirm \
 echo "installing $GPU drivers..."
 case $GPU in
     nvidia)
+        echo "removing conflicting nvidia modules..."
+        paru -Rdd --noconfirm linux-cachyos-lts-nvidia-open 2>/dev/null || true
+    
+        echo "installing nvidia drivers..."
         paru -Syu --noconfirm \
             nvidia-dkms \
             nvidia-utils \
