@@ -13,31 +13,29 @@ with multi-monitor support
 
 <h2>install</h2>
   
-<span style="font-size: 12px;">- open konsole</span>
+<span style="font-size: 12px;">open konsole</span>
 
-<span style="font-size: 12px;">- run:</span>
+<span style="font-size: 12px;">run:</span>
 
 ```
-sudo pacman --noconfirm -Syu cachyos-gaming-meta wayland-protocols boost git-lfs onnxruntime krfb steam 
-paru -Syu --noconfirm monado-vulkan-layers-git envision-xr-git wayvr-git
-sudo ln -sf /usr/lib/libboost_thread.so.1.89.0 /usr/lib/libboost_thread.so.1.88.0
-sudo ln -sf /usr/lib/libboost_filesystem.so.1.89.0 /usr/lib/libboost_filesystem.so.1.88.0
-sudo ln -sf /usr/lib/libboost_program_options.so.1.89.0 /usr/lib/libboost_program_options.so.1.88.0
-sudo ln -sf /usr/lib/libboost_atomic.so.1.89.0 /usr/lib/libboost_system.so.1.88.0
-sudo ln -sf /usr/lib/libboost_atomic.so.1.89.0 /usr/lib/libboost_system.so
-mkdir -p ~/Pictures/wayvr_environments/ && \
-wget -O ~/Pictures/wayvr_environments/nebula.jpg 'https://raw.githubusercontent.com/sudoxreboot/linux-vr-wmr/main/wayvr_environments/nebula.jpg'
-magick "$HOME/Pictures/wayvr_environments/nebula.jpg" -define dds:compression=dxt5 "$HOME/Pictures/wayvr_environments/nebula.dds"
-echo "skybox_texture: $HOME/Pictures/wayvr_environments/nebula.dds" > ~/.config/wayvr/conf.d/skybox.yaml
+curl -fsSL https://raw.githubusercontent.com/sudoxreboot/linux-vr-wmr/main/linux-vr-wmr.sh | bash
 ```
-
-<span style="font-size: 12px;">(boost 1.89 doesn't work with envision, so we trick it)</span>
-
-
-<h2><span style="font-size: 32px;"><strong>envision</strong></span></h2>
-<span style="font-size: 12px;">
+<details>
+  <summary>what this script does</summary>
+<p align="center">\
   
-- launch envision
+  - detect gpu
+  
+  - updates and installs system and vr packages
+  
+  - updates gpu driver
+  
+  - symlink boost for compatibility
+  
+  - downloads, converts, and applies my favorite environment for within the desktop environment, this is just a bonus, i got bored with stock wayvr
+</p>
+</details>  
+<span>launch envision</span>
 
 
 <details>
@@ -51,7 +49,7 @@ echo "skybox_texture: $HOME/Pictures/wayvr_environments/nebula.dds" > ~/.config/
   
 <span style="font-size: 22px;"><strong>xr service repo:</strong></span>
 
-  ```
+```
 https://gitlab.freedesktop.org/thaytan/monado
 ```
 <span style="font-size: 22px;"><strong>xr service branch:</strong></span>
@@ -76,14 +74,20 @@ enable handtracking
 </details>   
   </p>
   
-- save and build
-- optional: enable stardust plugin
-- pair controllers (will probably say failed, ignore it)
-  - if failed to connect: power cycle the controllers and they should connect
-- plug in headset if not plugged in 
-- press start
+save and build
 
-- [ this final step is a <strong>hard</strong> requirement or else don't follow this guide =p ]
+enable wayvr plugin
+
+optional: enable stardust plugin
+
+pair controllers (will probably say failed, ignore it)
+- if failed to connect: power cycle the controllers and they should connect
+
+plug in headset if not plugged in 
+
+press start
+
+[ this final step is a <strong>hard</strong> requirement or else don't follow this guide =p ]
 
 <details>
   <summary>reveal final step</summary>
