@@ -34,23 +34,17 @@ paru -Syu --noconfirm \
 echo "installing $GPU drivers..."
 case $GPU in
     nvidia)
-        echo "Cleaning up all existing NVIDIA driver packages to prevent conflicts..."
-        # Force removal of any existing nvidia dkms/utils that aren't the standard ones
-        # This targets 535xx, 550xx, and the 'open' variants specifically
-        sudo pacman -Rs --noconfirm \
-            nvidia-535xx-dkms nvidia-535xx-utils lib32-nvidia-535xx-utils \
-            nvidia-550xx-dkms nvidia-550xx-utils lib32-nvidia-550xx-utils \
-            linux-cachyos-nvidia-open 2>/dev/null || true
+        echo "Nuking legacy drivers..."
+        sudo pacman -Rdd --noconfirm nvidia-535xx-dkms nvidia-535xx-utils lib32-nvidia-535xx-utils 2>/dev/null || true
 
-        echo "Installing production NVIDIA 590+ drivers..."
-        # Re-installing the standard stack from scratch
+        echo "Forcing production drivers..."
+        # We use pacman here specifically to use the 'extra/' prefix 
+        # which prevents the 'Enter a number' prompt.
         sudo pacman -S --noconfirm --needed \
-            nvidia-dkms \
+            extra/nvidia-dkms \
             nvidia-utils \
             lib32-nvidia-utils \
-            nvidia-settings \
-            lib32-opencl-nvidia \
-            opencl-nvidia
+            nvidia-settings
         ;;
     amd)
         paru -Syu --noconfirm \
