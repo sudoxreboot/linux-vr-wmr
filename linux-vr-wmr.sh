@@ -35,8 +35,14 @@ echo "installing $GPU drivers..."
 case $GPU in
     nvidia)
         echo "Cleaning up potential NVIDIA conflicts..."
-        # Add any package that might block a clean 'nvidia-dkms' install here
-        remove_if_exists "linux-cachyos-nvidia-open"
+        
+        # Check if the conflicting package is installed
+        if pacman -Qi linux-cachyos-nvidia-open > /dev/null 2>&1; then
+            echo "Removing linux-cachyos-nvidia-open to prevent conflicts..."
+            sudo pacman -Rs --noconfirm linux-cachyos-nvidia-open
+        else
+            echo "No conflicting NVIDIA packages found. Proceeding..."
+        fi
 
         echo "Installing production NVIDIA drivers..."
         paru -Syu --noconfirm --needed \
