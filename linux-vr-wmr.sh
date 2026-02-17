@@ -21,6 +21,7 @@ fi
 echo "updating system and installing vr packages..."
 paru -Syu --noconfirm \
     cachyos-gaming-meta \
+    bc \
     wayland-protocols \
     boost \
     git-lfs \
