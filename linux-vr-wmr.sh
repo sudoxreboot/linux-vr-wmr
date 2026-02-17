@@ -34,11 +34,12 @@ paru -Syu --noconfirm \
 echo "installing $GPU drivers..."
 case $GPU in
     nvidia)
-        echo "removing conflicting nvidia modules..."
-        sudo pacman -Rs linux-cachyos-nvidia-open
-    
-        echo "installing nvidia drivers..."
-        paru -Syu --noconfirm \
+        echo "Cleaning up potential NVIDIA conflicts..."
+        # Add any package that might block a clean 'nvidia-dkms' install here
+        remove_if_exists "linux-cachyos-nvidia-open"
+
+        echo "Installing production NVIDIA drivers..."
+        paru -Syu --noconfirm --needed \
             nvidia-dkms \
             nvidia-utils \
             lib32-nvidia-utils \
