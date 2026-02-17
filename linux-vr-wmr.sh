@@ -31,33 +31,21 @@ paru -Syu --noconfirm \
     envision-xr-git \
     wayvr-git
 
-# Helper function to remove packages safely
-remove_if_exists() {
-    for pkg in "$@"; do
-        if pacman -Qq "$pkg" >/dev/null 2>&1; then
-            echo "Removing conflicting package: $pkg"
-            sudo pacman -Rns "$pkg" --noconfirm
-        fi
-    done
-}
-
 echo "installing $GPU drivers..."
 case $GPU in
     nvidia)
-        echo "Cleaning up potential NVIDIA conflicts..."
-        # Add any package that might block a clean 'nvidia-dkms' install here
-        remove_if_exists "linux-cachyos-nvidia-open" "nvidia-535xx-utils" "nvidia-535xx-dkms" "nvidia-utils"
-
-        echo "Installing production NVIDIA drivers..."
-        paru -Syu --noconfirm --needed \
+        echo "removing conflicting nvidia modules..."
+        sudo pacman -Rs linux-cachyos-nvidia-open
+    
+        echo "installing nvidia drivers..."
+        paru -Syu --noconfirm \
             nvidia-dkms \
             nvidia-utils \
             lib32-nvidia-utils \
             nvidia-settings
         ;;
     amd)
-        echo "Installing AMD drivers..."
-        paru -Syu --noconfirm --needed \
+        paru -Syu --noconfirm \
             mesa \
             lib32-mesa \
             vulkan-radeon \
@@ -68,8 +56,7 @@ case $GPU in
             lib32-mesa-vdpau
         ;;
     intel)
-        echo "Installing Intel drivers..."
-        paru -Syu --noconfirm --needed \
+        paru -Syu --noconfirm \
             mesa \
             lib32-mesa \
             vulkan-intel \
