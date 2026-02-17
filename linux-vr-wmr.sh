@@ -35,7 +35,7 @@ echo "installing $GPU drivers..."
 case $GPU in
     nvidia)
         echo "removing conflicting nvidia modules..."
-        paru -Rdd --noconfirm linux-cachyos-lts-nvidia-open
+        sudo pacman -Rsn --noconfirm linux-cachyos-lts-nvidia-open
     
         echo "installing nvidia drivers..."
         paru -Syu --noconfirm \
