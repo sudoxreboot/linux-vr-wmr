@@ -29,8 +29,7 @@ paru -Syu --noconfirm \
     krfb \
     steam \
     monado-vulkan-layers-git \
-    envision-xr-git \
-    wayvr-git
+    envision-xr-git
 
 echo "installing $GPU drivers..."
 case $GPU in
