@@ -31,16 +31,13 @@ paru -Syu --noconfirm \
     monado-vulkan-layers-git \
     envision-xr-git
 
-#feature in progress
+#feature in progress - nvidia should be complete - don't own amd or intel for testing
 echo "installing $GPU drivers..."
 case $GPU in
     nvidia)
-        echo "Nuking legacy drivers..."
+        echo "reinstalling nvidia drivers..."
         sudo pacman -Rdd $(pacman -Qq | grep "nvidia-lts" || pacman -Qq | grep "nvidia") 
 
-        echo "Forcing production drivers..."
-        # We use pacman here specifically to use the 'extra/' prefix 
-        # which prevents the 'Enter a number' prompt.
         sudo pacman -S --noconfirm --needed \
             extra/nvidia-dkms \
             nvidia-utils \
@@ -48,6 +45,9 @@ case $GPU in
             nvidia-settings
         ;;
     amd)
+        echo "updating amd drivers"
+        sudo pacman -Rdd $(pacman -Qq | grep "amd-lts" || pacman -Qq | grep "amd")
+        
         paru -Syu --noconfirm \
             mesa \
             lib32-mesa \
@@ -59,6 +59,8 @@ case $GPU in
             lib32-mesa-vdpau
         ;;
     intel)
+        echo "updating intel drivers"
+        sudo pacman -Rdd $(pacman -Qq | grep "intel-lts" || pacman -Qq | grep "intel")
         paru -Syu --noconfirm \
             mesa \
             lib32-mesa \
