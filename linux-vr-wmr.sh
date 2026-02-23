@@ -32,21 +32,21 @@ paru -Syu --noconfirm \
     envision-xr-git
 
 #feature in progress
-#echo "installing $GPU drivers..."
-#case $GPU in
-#    nvidia)
-#        echo "Nuking legacy drivers..."
-#        sudo pacman -Rdd --noconfirm nvidia-535xx-dkms nvidia-535xx-utils lib32-nvidia-535xx-utils 2>/dev/null || true
+echo "installing $GPU drivers..."
+case $GPU in
+    nvidia)
+        echo "Nuking legacy drivers..."
+        sudo pacman -Rddp $(pacman -Qq | grep "nvidia-lts" || pacman -Qq | grep "nvidia") 
 
-#        echo "Forcing production drivers..."
+        echo "Forcing production drivers..."
         # We use pacman here specifically to use the 'extra/' prefix 
         # which prevents the 'Enter a number' prompt.
-#        sudo pacman -S --noconfirm --needed \
-#            extra/nvidia-dkms \
-#            nvidia-utils \
-#            lib32-nvidia-utils \
-#            nvidia-settings
-#        ;;
+        sudo pacman -S --noconfirm --needed \
+            extra/nvidia-dkms \
+            nvidia-utils \
+            lib32-nvidia-utils \
+            nvidia-settings
+        ;;
 #    amd)
 #        paru -Syu --noconfirm \
 #            mesa \
