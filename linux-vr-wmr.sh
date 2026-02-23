@@ -47,25 +47,25 @@ case $GPU in
             lib32-nvidia-utils \
             nvidia-settings
         ;;
-#    amd)
-#        paru -Syu --noconfirm \
-#            mesa \
-#            lib32-mesa \
-#            vulkan-radeon \
-#            lib32-vulkan-radeon \
-#            libva-mesa-driver \
-#            lib32-libva-mesa-driver \
-#            mesa-vdpau \
-#            lib32-mesa-vdpau
-#        ;;
-#    intel)
-#        paru -Syu --noconfirm \
-#            mesa \
-#            lib32-mesa \
-#            vulkan-intel \
-#            lib32-vulkan-intel \
-#            intel-media-driver
-#        ;;
+    amd)
+        paru -Syu --noconfirm \
+            mesa \
+            lib32-mesa \
+            vulkan-radeon \
+            lib32-vulkan-radeon \
+            libva-mesa-driver \
+            lib32-libva-mesa-driver \
+            mesa-vdpau \
+            lib32-mesa-vdpau
+        ;;
+    intel)
+        paru -Syu --noconfirm \
+            mesa \
+            lib32-mesa \
+            vulkan-intel \
+            lib32-vulkan-intel \
+            intel-media-driver
+        ;;
 esac
 
 echo "creating boost symlinks for compatibility..."
