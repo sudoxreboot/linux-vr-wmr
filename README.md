@@ -66,10 +66,19 @@ dev-constellation-controller-tracking
 <span style="font-size: 22px;"><strong>environment variables:</strong></span>
 
 enable krfb cursors
-```WLR_NO_HARDWARE_CURSORS=1```
+```
+WLR_NO_HARDWARE_CURSORS=1
+```
 
 enable handtracking
-```WMR_HANDTRACKING=1```
+```
+WMR_HANDTRACKING=1
+```
+fix mod launcher launched xrizer crash
+```
+XRT_COMPOSITOR_SCALE_PERCENTAGE=100
+```
+
 
 </details>   
   </p>
