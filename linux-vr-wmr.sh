@@ -31,41 +31,42 @@ paru -Syu --noconfirm \
     monado-vulkan-layers-git \
     envision-xr-git
 
-echo "installing $GPU drivers..."
-case $GPU in
-    nvidia)
-        echo "Nuking legacy drivers..."
-        sudo pacman -Rdd --noconfirm nvidia-535xx-dkms nvidia-535xx-utils lib32-nvidia-535xx-utils 2>/dev/null || true
+#feature in progress
+#echo "installing $GPU drivers..."
+#case $GPU in
+#    nvidia)
+#        echo "Nuking legacy drivers..."
+#        sudo pacman -Rdd --noconfirm nvidia-535xx-dkms nvidia-535xx-utils lib32-nvidia-535xx-utils 2>/dev/null || true
 
-        echo "Forcing production drivers..."
+#        echo "Forcing production drivers..."
         # We use pacman here specifically to use the 'extra/' prefix 
         # which prevents the 'Enter a number' prompt.
-        sudo pacman -S --noconfirm --needed \
-            extra/nvidia-dkms \
-            nvidia-utils \
-            lib32-nvidia-utils \
-            nvidia-settings
-        ;;
-    amd)
-        paru -Syu --noconfirm \
-            mesa \
-            lib32-mesa \
-            vulkan-radeon \
-            lib32-vulkan-radeon \
-            libva-mesa-driver \
-            lib32-libva-mesa-driver \
-            mesa-vdpau \
-            lib32-mesa-vdpau
-        ;;
-    intel)
-        paru -Syu --noconfirm \
-            mesa \
-            lib32-mesa \
-            vulkan-intel \
-            lib32-vulkan-intel \
-            intel-media-driver
-        ;;
-esac
+#        sudo pacman -S --noconfirm --needed \
+#            extra/nvidia-dkms \
+#            nvidia-utils \
+#            lib32-nvidia-utils \
+#            nvidia-settings
+#        ;;
+#    amd)
+#        paru -Syu --noconfirm \
+#            mesa \
+#            lib32-mesa \
+#            vulkan-radeon \
+#            lib32-vulkan-radeon \
+#            libva-mesa-driver \
+#            lib32-libva-mesa-driver \
+#            mesa-vdpau \
+#            lib32-mesa-vdpau
+#        ;;
+#    intel)
+#        paru -Syu --noconfirm \
+#            mesa \
+#            lib32-mesa \
+#            vulkan-intel \
+#            lib32-vulkan-intel \
+#            intel-media-driver
+#        ;;
+#esac
 
 echo "creating boost symlinks for compatibility..."
 sudo ln -sf /usr/lib/libboost_thread.so.1.89.0 /usr/lib/libboost_thread.so.1.88.0
