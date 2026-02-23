@@ -32,6 +32,7 @@ paru -Syu --noconfirm \
     envision-xr-git
 
 #feature in progress - nvidia should be complete - don't own amd or intel for testing
+#Rdd used because pacman wont uninstall the drivers with packages installed that use them easily
 echo "installing $GPU drivers..."
 case $GPU in
     nvidia)
@@ -69,7 +70,7 @@ case $GPU in
             intel-media-driver
         ;;
 esac
-
+# need to sumlink libboost to 1.88.0 for envision. force downgrade breaks other packages on system.
 echo "creating boost symlinks for compatibility..."
 sudo ln -sf /usr/lib/libboost_thread.so.1.89.0 /usr/lib/libboost_thread.so.1.88.0
 sudo ln -sf /usr/lib/libboost_filesystem.so.1.89.0 /usr/lib/libboost_filesystem.so.1.88.0
