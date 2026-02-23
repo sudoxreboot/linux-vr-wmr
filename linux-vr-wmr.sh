@@ -36,7 +36,7 @@ echo "installing $GPU drivers..."
 case $GPU in
     nvidia)
         echo "Nuking legacy drivers..."
-        sudo pacman -Rddp $(pacman -Qq | grep "nvidia-lts" || pacman -Qq | grep "nvidia") 
+        sudo pacman -Rdd $(pacman -Qq | grep "nvidia-lts" || pacman -Qq | grep "nvidia") 
 
         echo "Forcing production drivers..."
         # We use pacman here specifically to use the 'extra/' prefix 
