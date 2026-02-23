@@ -66,7 +66,7 @@ case $GPU in
 #            lib32-vulkan-intel \
 #            intel-media-driver
 #        ;;
-#esac
+esac
 
 echo "creating boost symlinks for compatibility..."
 sudo ln -sf /usr/lib/libboost_thread.so.1.89.0 /usr/lib/libboost_thread.so.1.88.0
