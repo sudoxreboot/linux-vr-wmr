@@ -33,7 +33,7 @@ paru -Syu --noconfirm \
 
 #feature in progress - nvidia should be complete - don't own amd or intel for testing
 #Rdd used because pacman wont uninstall the drivers with packages installed that use them easily
-echo "installing $GPU drivers..."
+#echo "installing $GPU drivers..."
 case $GPU in
     nvidia)
         echo "reinstalling nvidia drivers..."
@@ -45,30 +45,30 @@ case $GPU in
             lib32-nvidia-utils \
             nvidia-settings
         ;;
-    amd)
-        echo "updating amd drivers"
-        sudo pacman -Rdd $(pacman -Qq | grep "amd-lts" || pacman -Qq | grep "amd")
-        
-        paru -Syu --noconfirm \
-            mesa \
-            lib32-mesa \
-            vulkan-radeon \
-            lib32-vulkan-radeon \
-            libva-mesa-driver \
-            lib32-libva-mesa-driver \
-            mesa-vdpau \
-            lib32-mesa-vdpau
-        ;;
-    intel)
-        echo "updating intel drivers"
-        sudo pacman -Rdd $(pacman -Qq | grep "intel-lts" || pacman -Qq | grep "intel")
-        paru -Syu --noconfirm \
-            mesa \
-            lib32-mesa \
-            vulkan-intel \
-            lib32-vulkan-intel \
-            intel-media-driver
-        ;;
+#    amd)
+#        echo "updating amd drivers"
+#        sudo pacman -Rdd $(pacman -Qq | grep "amd-lts" || pacman -Qq | grep "amd")
+#        
+#        paru -Syu --noconfirm \
+#            mesa \
+#            lib32-mesa \
+#            vulkan-radeon \
+#            lib32-vulkan-radeon \
+#            libva-mesa-driver \
+#            lib32-libva-mesa-driver \
+#            mesa-vdpau \
+#            lib32-mesa-vdpau
+#        ;;
+#    intel)
+#        echo "updating intel drivers"
+#        sudo pacman -Rdd $(pacman -Qq | grep "intel-lts" || pacman -Qq | grep "intel")
+#        paru -Syu --noconfirm \
+#            mesa \
+#            lib32-mesa \
+#            vulkan-intel \
+#            lib32-vulkan-intel \
+#            intel-media-driver
+#        ;;
 esac
 # need to sumlink libboost to 1.88.0 for envision. force downgrade breaks other packages on system.
 echo "creating boost symlinks for compatibility..."
