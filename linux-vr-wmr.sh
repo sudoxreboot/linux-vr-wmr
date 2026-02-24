@@ -26,7 +26,6 @@ paru -Syu --noconfirm \
     boost \
     git-lfs \
     onnxruntime \
-    krfb \
     steam \
     monado-vulkan-layers-git \
     envision-xr-git
