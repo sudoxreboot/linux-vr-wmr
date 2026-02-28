@@ -1,6 +1,6 @@
 <div align="center">
 
-**[install](https://github.com/sudoxreboot/linux-vr-wmr/blob/main/docs/install-options/install-options.md) &nbsp;&nbsp; [customization]([https://github.com/sudoxreboot/linux-vr-wmr/tree/main/docs/install-options](https://github.com/sudoxreboot/linux-vr-wmr/blob/main/docs/install-options/customization.md)) &nbsp;&nbsp; [games](https://github.com/sudoxreboot/linux-vr-wmr/blob/main/docs/game-insights/game-insights.md)**
+**[install](https://github.com/sudoxreboot/linux-vr-wmr/blob/main/docs/install-options/install-options.md) &nbsp;&nbsp; [customization](https://github.com/sudoxreboot/linux-vr-wmr/blob/main/docs/install-options/customization.md) &nbsp;&nbsp; [games](https://github.com/sudoxreboot/linux-vr-wmr/blob/main/docs/game-insights/game-insights.md)**
 
 </div>
 
