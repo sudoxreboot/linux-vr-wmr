@@ -1,9 +1,14 @@
 #!/bin/bash
 set -e
 
-echo "detecting gpu..."
+SKIP_KRFB=false
+SKIP_DESKTOP=false
+for arg in "$@"; do
+    [[ "$arg" == "--no-krfb" ]] && SKIP_KRFB=true
+    [[ "$arg" == "--no-desktop" ]] && SKIP_DESKTOP=true && SKIP_KRFB=true
+done
 
-# detect gpu vendor
+echo "detecting gpu..."
 if lspci | grep -i vga | grep -iq nvidia; then
     GPU="nvidia"
     echo "detected nvidia gpu"
@@ -19,26 +24,27 @@ else
 fi
 
 echo "updating system and installing vr packages..."
-paru -Syu --noconfirm \
-    cachyos-gaming-meta \
-    bc \
-    wayland-protocols \
-    boost \
-    git-lfs \
-    onnxruntime \
-    krfb \
-    steam \
-    monado-vulkan-layers-git \
+PACKAGES=(
+    cachyos-gaming-meta
+    bc
+    wayland-protocols
+    boost
+    git-lfs
+    onnxruntime
+    steam
+    monado-vulkan-layers-git
     envision-xr-git
+)
+$SKIP_KRFB || PACKAGES+=(krfb)
+
+paru -Syu --noconfirm "${PACKAGES[@]}"
 
 #feature in progress - nvidia should be complete - don't own amd or intel for testing
 #Rdd used because pacman wont uninstall the drivers with packages installed that use them easily
-#echo "installing $GPU drivers..."
 case $GPU in
     nvidia)
         echo "reinstalling nvidia drivers..."
-        sudo pacman -Rdd $(pacman -Qq | grep "nvidia-lts" || pacman -Qq | grep "nvidia") 
-
+        sudo pacman -Rdd $(pacman -Qq | grep "nvidia-lts" || pacman -Qq | grep "nvidia")
         sudo pacman -S --noconfirm --needed \
             extra/nvidia-dkms \
             nvidia-utils \
@@ -48,7 +54,6 @@ case $GPU in
 #    amd)
 #        echo "updating amd drivers"
 #        sudo pacman -Rdd $(pacman -Qq | grep "amd-lts" || pacman -Qq | grep "amd")
-#        
 #        paru -Syu --noconfirm \
 #            mesa \
 #            lib32-mesa \
@@ -70,7 +75,7 @@ case $GPU in
 #            intel-media-driver
 #        ;;
 esac
-# need to sumlink libboost to 1.88.0 for envision. force downgrade breaks other packages on system.
+
 echo "creating boost symlinks for compatibility..."
 sudo ln -sf /usr/lib/libboost_thread.so.1.89.0 /usr/lib/libboost_thread.so.1.88.0
 sudo ln -sf /usr/lib/libboost_filesystem.so.1.89.0 /usr/lib/libboost_filesystem.so.1.88.0
@@ -78,17 +83,18 @@ sudo ln -sf /usr/lib/libboost_program_options.so.1.89.0 /usr/lib/libboost_progra
 sudo ln -sf /usr/lib/libboost_atomic.so.1.89.0 /usr/lib/libboost_system.so.1.88.0
 sudo ln -sf /usr/lib/libboost_atomic.so.1.89.0 /usr/lib/libboost_system.so
 
-echo "downloading and converting skybox texture..."
-mkdir -p ~/Pictures/wayvr_environments/
-wget -O ~/Pictures/wayvr_environments/nebula.jpg \
-    'https://raw.githubusercontent.com/sudoxreboot/linux-vr-wmr/main/wayvr_environments/nebula.jpg'
+if ! $SKIP_DESKTOP; then
+    echo "downloading and converting skybox texture..."
+    mkdir -p ~/Pictures/wayvr_environments/
+    wget -O ~/Pictures/wayvr_environments/nebula.jpg \
+        'https://raw.githubusercontent.com/sudoxreboot/linux-vr-wmr/main/wayvr_environments/nebula.jpg'
+    magick "$HOME/Pictures/wayvr_environments/nebula.jpg" \
+        -define dds:compression=dxt5 \
+        "$HOME/Pictures/wayvr_environments/nebula.dds"
 
-magick "$HOME/Pictures/wayvr_environments/nebula.jpg" \
-    -define dds:compression=dxt5 \
-    "$HOME/Pictures/wayvr_environments/nebula.dds"
-
-echo "configuring wayvr skybox..."
-mkdir -p ~/.config/wayvr/conf.d/
-echo "skybox_texture: $HOME/Pictures/wayvr_environments/nebula.dds" > ~/.config/wayvr/conf.d/skybox.yaml
+    echo "configuring wayvr skybox..."
+    mkdir -p ~/.config/wayvr/conf.d/
+    echo "skybox_texture: $HOME/Pictures/wayvr_environments/nebula.dds" > ~/.config/wayvr/conf.d/skybox.yaml
+fi
 
 echo "setup complete! launch envision and configure."
