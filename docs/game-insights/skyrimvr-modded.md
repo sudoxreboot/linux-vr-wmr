@@ -1,3 +1,5 @@
+[back](https://github.com/sudoxreboot/linux-vr-wmr/blob/main/docs/game-insights/game-insights.md)
+
 # skyrim vr modded
 
 1. install steam via the .deb
