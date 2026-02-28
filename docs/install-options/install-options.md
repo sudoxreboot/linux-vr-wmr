@@ -1,6 +1,6 @@
 <div align="center">
 
-**[home](https://github.com/sudoxreboot/linux-vr-wmr/) &nbsp;&nbsp; [customization](https://github.com/sudoxreboot/linux-vr-wmr/tree/main/docs/install-options) &nbsp;&nbsp; [games](https://github.com/sudoxreboot/linux-vr-wmr/blob/main/docs/game-insights/game-insights.md)**
+**[home](https://github.com/sudoxreboot/linux-vr-wmr/) &nbsp;&nbsp; [customization](https://github.com/sudoxreboot/linux-vr-wmr/blob/main/docs/install-options/customization.md) &nbsp;&nbsp; [games](https://github.com/sudoxreboot/linux-vr-wmr/blob/main/docs/game-insights/game-insights.md)**
 
 </div>
 
