@@ -1,3 +1,11 @@
+<div align="center">
+  
+**[home](https://github.com/sudoxreboot/linux-vr-wmr/) &nbsp;&nbsp; [install](https://github.com/sudoxreboot/linux-vr-wmr/blob/main/docs/install-options/install-options.md) &nbsp;&nbsp; [customization](https://github.com/sudoxreboot/linux-vr-wmr/blob/main/docs/install-options/customization.md)**
+
+</div>
+
+---
+
 # game insights
 
 this is my collection of tips for game usage in linux VR
