@@ -20,6 +20,16 @@ with multi-monitor support
 ```
 curl -fsSL https://raw.githubusercontent.com/sudoxreboot/linux-vr-wmr/main/linux-vr-wmr.sh | bash
 ```
+
+i have added flags for those if you for whatever reason don't trust aur krfb (probably already installed anyway by default with your plasma) or if you, like me, don't actually need to use the headset for a virtual desktop.
+
+flag options:
+
+```--no-krfb``` skips krfb
+
+```--no-desktop``` skips wayvr skybox setup
+
+
 <details>
   <summary>what this script does</summary>
 <p align="center">\
@@ -138,6 +148,9 @@ sh -c 'magick "$IN" -define dds:compression=dxt5 "$OUT" && mkdir -p ~/.config/wa
 ```
 
 
+<h1>notice</h1>
+i have moved off of cachyos back to my home with kubuntu. i had interpreted that it was a compatibility req for cachyos from the guides i had come across and hacked together and then worked around the deps for, but it turns out that it was just a common preference, not a hard requirement. kubuntu has it's own dep hell, but nothing similar to the cachyos hell. workarounds for kubuntu were trivial and if i ever have to reinstall my os again, i will add the write up for kubuntu and probably a streamline script as well.
+i will be firing up a youtube channel in the coming months featuring walktrhoughs with clean machines as well, so i'll probably do a kubuntu dep hell video and make the script at that time.
 
 
 
