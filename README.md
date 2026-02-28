@@ -32,7 +32,7 @@ flag options:
 
 <details>
   <summary>what this script does</summary>
-<p align="center">\
+<p align="center">
   
   - detect gpu
   
