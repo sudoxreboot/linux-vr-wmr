@@ -46,4 +46,73 @@ i have added flags for those if you for whatever reason don't trust aur krfb (pr
 </p>
 </details>  
 
+<details>
+  <summary>choose WMR default from dropdown and duplicate</summary>
+<p align="center">
+  <img src="https://lvra.gitlab.io/images/EnvisionXR_WMR.png" />
+</p></details> 
+<p align="center">
+<details>
+  <summary>change config</summary>
+  
+<span style="font-size: 22px;"><strong>xr service repo:</strong></span>
 
+```
+https://gitlab.freedesktop.org/thaytan/monado
+```
+<span style="font-size: 22px;"><strong>xr service branch:</strong></span>
+
+```
+dev-constellation-controller-tracking
+```
+<details>
+  <summary>image</summary>
+
+<p align="center">
+  <img src="https://lvra.gitlab.io/images/wmr_controller_tracking_envision.png" />
+</p></details>  
+<span style="font-size: 22px;"><strong>environment variables:</strong></span>
+
+enable krfb cursors
+```
+WLR_NO_HARDWARE_CURSORS=1
+```
+
+enable handtracking
+```
+WMR_HANDTRACKING=1
+```
+fix mod launcher launched xrizer crash
+```
+XRT_COMPOSITOR_SCALE_PERCENTAGE=100
+```
+
+
+</details>   
+  </p>
+  
+save and build
+
+optional: enable wayvr plugin
+
+optional: enable stardust plugin
+
+pair controllers (will probably say failed, ignore it)
+- if failed to connect: power cycle the controllers and they should connect
+
+plug in headset if not plugged in 
+
+press start
+
+[ this final step is a <strong>hard</strong> requirement or else don't follow this guide =p ]
+
+<details>
+  <summary>reveal final step</summary>
+<p align="center"><span style="color: #FF0099; font-size: 96px;"><strong>enjoy!</strong></span></p>
+</details>  
+  
+<strong><span style="font-size: 28px;">notes</span></strong>
+
+- <strong>NEVER</strong> close envision while the game is running
+- turn on controllers before starting the envision instance
+</span>
