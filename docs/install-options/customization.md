@@ -1,3 +1,11 @@
+<div align="center">
+
+**[home](https://github.com/sudoxreboot/linux-vr-wmr/) &nbsp;&nbsp; [install](https://github.com/sudoxreboot/linux-vr-wmr/blob/main/docs/install-options/install-options.md) &nbsp;&nbsp; [games](https://github.com/sudoxreboot/linux-vr-wmr/blob/main/docs/game-insights/game-insights.md)**
+
+</div>
+
+---
+
 # customization
 
 <h3><span style="font-size: 32px;">multi-monitor</span></h3>
