@@ -1,3 +1,11 @@
+<div align="center">
+
+**[home](https://github.com/sudoxreboot/linux-vr-wmr/) &nbsp;&nbsp; [customization](https://github.com/sudoxreboot/linux-vr-wmr/tree/main/docs/install-options) &nbsp;&nbsp; [games](https://github.com/sudoxreboot/linux-vr-wmr/blob/main/docs/game-insights/game-insights.md)**
+
+</div>
+
+---
+
 # installation:
 
 open konsole
