@@ -1,3 +1,6 @@
+[back](https://github.com/sudoxreboot/linux-vr-wmr/blob/main/docs/game-insights/game-insights.md)
+
+
 # star citizen
 
 <h3>steps confirmed to work on kubuntu 2026.02.27</h3>
